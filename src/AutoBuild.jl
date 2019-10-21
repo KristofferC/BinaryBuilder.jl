@@ -95,7 +95,7 @@ function build_tarballs(ARGS, src_name, src_version, sources, script,
     debug = check_flag("--debug")
 
     # This sets whether we are going to deploy our binaries to GitHub releases
-    deploy, deploy_repo = extract_flag("--deploy", "JuliaBinaryWrappers/$(src_name)_jll.jl")
+    deploy, repo_name = extract_flag("--deploy", "JuliaBinaryWrappers/$(src_name)_jll.jl")
 
     # This sets whether we are going to register, and if so, which 
     register, register_path = extract_flag("--register", Pkg.depots1())
@@ -130,7 +130,6 @@ function build_tarballs(ARGS, src_name, src_version, sources, script,
         if verbose
             @info("Building and deploying version $(build_version)")
         end
-        repo_name = "JuliaBinaryWrappers/$(src_name)_jll.jl"
         tag = get_tag_name(src_name, build_version)
 
         # First, ensure the GH repo exists
